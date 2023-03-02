@@ -18,19 +18,19 @@
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".RegActivity"
             android:exported="false" />
         <activity
-            android:name=".AuthorizationActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".OnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

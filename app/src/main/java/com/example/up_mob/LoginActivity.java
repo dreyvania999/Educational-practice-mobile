@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class AuthorizationActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_authorization);
+        setContentView(R.layout.activity_login);
 
         TextView tv = findViewById(R.id.reg);
         tv.setOnClickListener(this);
@@ -30,10 +30,10 @@ public class AuthorizationActivity extends AppCompatActivity implements View.OnC
         switch (view.getId()) {
             case R.id.btnSignIn:
             case R.id.btnProfile:
-                startActivity(new Intent(AuthorizationActivity.this, MainMenuActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
             case R.id.reg:
-                startActivity(new Intent(AuthorizationActivity.this, RegActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegActivity.class));
                 break;
         }
     }
