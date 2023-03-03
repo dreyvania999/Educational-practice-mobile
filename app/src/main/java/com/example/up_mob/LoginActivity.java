@@ -22,7 +22,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText Email,Password;
+    EditText Email, Password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,18 +42,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnProfile.setOnClickListener(this);
     }
 
-    public  boolean PassAndEmail(){
-       return !TextUtils.isEmpty(Email.getText())&& !TextUtils.isEmpty(Password.getText()) && android.util.Patterns.EMAIL_ADDRESS.matcher(Email.getText()).matches();
+    public boolean PassAndEmail() {
+        return !TextUtils.isEmpty(Email.getText()) && !TextUtils.isEmpty(Password.getText()) && android.util.Patterns.EMAIL_ADDRESS.matcher(Email.getText()).matches();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSignIn:
-                if(PassAndEmail())
+                if (PassAndEmail())
 
-                break;
+                    break;
             case R.id.btnProfile:
+                MainActivity.CurrentUser = new User(1, "Вку", "ирил", "http://mskko2021.mad.hakta.pro//uploads//files//quote_2.png", "123");
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
             case R.id.reg:
@@ -60,6 +62,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
+
 
 
     /*private void postData( ) {

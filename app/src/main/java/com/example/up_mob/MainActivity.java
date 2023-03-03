@@ -20,7 +20,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    User CurrentUser;
+    public static User CurrentUser;
     final static String userVariableKey = "USER_VARIABLE";
 
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageView profile = findViewById(R.id.profile);
         profile.setOnClickListener(this);
-        tvGreeting.setText("С возвращением, " +CurrentUser.getNickName());
+        tvGreeting.setText("С возвращением, " +CurrentUser.getNickName()+"!");
         new DownloadImageTask(avatar)
                 .execute(CurrentUser.getAvatar());
     }
