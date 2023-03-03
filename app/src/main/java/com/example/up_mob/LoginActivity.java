@@ -4,16 +4,32 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    EditText Email,Password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Password = findViewById(R.id.pass);
+        Email = findViewById(R.id.email);
 
         TextView tv = findViewById(R.id.reg);
         tv.setOnClickListener(this);
@@ -25,10 +41,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnProfile.setOnClickListener(this);
     }
 
+    public  boolean PassAndEmail(){
+       return !TextUtils.isEmpty(Email.getText())&& !TextUtils.isEmpty(Password.getText()) && android.util.Patterns.EMAIL_ADDRESS.matcher(Email.getText()).matches();
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSignIn:
+                if(PassAndEmail())
+
+                break;
             case R.id.btnProfile:
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
@@ -37,4 +60,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
+
+    /*private void postData( ) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://mskko2021.mad.hakta.pro/api")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
+
+        User mask = new User( );
+
+        Call<User> call = retrofitAPI.createPost(mask);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Toast.makeText(LoginActivity.this, "Паста добавлена", Toast.LENGTH_LONG).show();
+
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "Ошибка: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }*/
 }

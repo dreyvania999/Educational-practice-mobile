@@ -71,7 +71,6 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/llFirstBlock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvQuestion">
@@ -183,147 +182,16 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llFirstBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:background="@drawable/main_menu_background"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/llSecondBlock"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llCondition">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvFirstHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="@string/header"
-                android:textColor="@color/gunmetal"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvFirst"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:padding="5dp"
-                android:text="@string/text"
-                android:textColor="@color/gunmetal"
-                android:textSize="12dp" />
-
-            <android.widget.Button
-                android:id="@+id/btnFirstMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:background="@drawable/main_menu_btn_back"
-                android:clickable="true"
-                android:paddingHorizontal="30dp"
-                android:text="@string/more"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toTopOf="@+id/question"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/instruction" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/FirstImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/main_menu_background"
-            android:padding="10dp"
-            app:srcCompat="@drawable/block_first" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llSecondBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:background="@drawable/main_menu_background"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/llDown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llFirstBlock">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvSecondHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="@string/header"
-                android:textColor="@color/gunmetal"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvSecond"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:padding="5dp"
-                android:text="@string/text"
-                android:textColor="@color/gunmetal"
-                android:textSize="12dp" />
-
-            <android.widget.Button
-                android:id="@+id/btnSecondMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:background="@drawable/main_menu_btn_back"
-                android:clickable="true"
-                android:paddingHorizontal="30dp"
-                android:text="@string/more"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toTopOf="@+id/question"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/instruction" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/SecondImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/main_menu_background"
-            android:padding="10dp"
-            app:srcCompat="@drawable/block_second" />
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/llDown"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llSecondBlock">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <ImageView
             android:layout_width="80dp"
@@ -344,5 +212,15 @@
             android:layout_weight="1"
             app:srcCompat="@drawable/user" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="409dp"
+        android:layout_height="405dp"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llCondition"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
