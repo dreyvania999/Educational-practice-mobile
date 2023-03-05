@@ -8,13 +8,20 @@ public class User implements Serializable {
     private String nickName;
     private String avatar;
     private String token;
+    private String password;
 
-    User (int id,String email,String nickName,String avatar,String token){
-        this.id=  id;
-        this.email= email;
-        this.nickName= nickName;
-        this.avatar= avatar;
-        this.token= token;
+    User(int id, String email, String nickName, String avatar, String token) {
+        this.id = id;
+        this.email = email;
+        this.nickName = nickName;
+        this.avatar = avatar;
+        this.token = token;
+    }
+
+    User(String email, String Password) {
+
+        this.email = email;
+        this.password = Password;
     }
 
     public String getToken() {

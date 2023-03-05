@@ -1,7 +1,5 @@
 package com.example.up_mob;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,16 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -66,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-    /*private void postData( ) {
+   /* private void postData( ) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://mskko2021.mad.hakta.pro/api")
@@ -77,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         User mask = new User( );
 
-        Call<User> call = retrofitAPI.createPost(mask);
+        retrofit2.Call<User> call = retrofitAPI.createPost(mask);
 
         call.enqueue(new Callback<User>() {
             @Override

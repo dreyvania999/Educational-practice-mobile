@@ -13,17 +13,16 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llCondition">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:layout_width="294dp"
+            android:layout_width="239dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvFirstHeader"
-                android:layout_width="252dp"
+                android:id="@+id/Title"
+                android:layout_width="207dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="@string/header"
@@ -31,8 +30,8 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/tvFirst"
-                android:layout_width="258dp"
+                android:id="@+id/description"
+                android:layout_width="202dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:padding="5dp"
@@ -42,7 +41,7 @@
 
             <android.widget.Button
                 android:id="@+id/btnFirstMore"
-                android:layout_width="227dp"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:background="@drawable/main_menu_btn_back"
@@ -59,8 +58,8 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/FirstImage"
-            android:layout_width="495dp"
+            android:id="@+id/Images"
+            android:layout_width="86dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_weight="1"

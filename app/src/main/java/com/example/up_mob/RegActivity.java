@@ -1,8 +1,8 @@
 package com.example.up_mob;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class RegActivity extends AppCompatActivity {
 
