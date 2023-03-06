@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.btnProfile:
-                MainActivity.CurrentUser = new User("1", "Вку", "ирил", "http://mskko2021.mad.hakta.pro//uploads//files//quote_2.png", "123");
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
             case R.id.reg:

@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.InputStream;
+import java.io.Serializable;
 
 public class User {
     private String id;

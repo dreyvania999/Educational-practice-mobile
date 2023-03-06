@@ -63,6 +63,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new GetFeeling().execute();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        outState.putAll(outState);
+        super.onSaveInstanceState(outState);
+    }
+    // получение ранее сохраненного состояния
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        CurrentUser= (User) savedInstanceState.get(userVariableKey);
+
+    }
+
 
     @Override
     public void onClick(View view) {
