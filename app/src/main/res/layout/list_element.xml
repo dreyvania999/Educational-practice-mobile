@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:layout_width="239dp"
+            android:layout_width="315dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -59,8 +59,8 @@
 
         <ImageView
             android:id="@+id/Images"
-            android:layout_width="86dp"
-            android:layout_height="wrap_content"
+            android:layout_width="324dp"
+            android:layout_height="141dp"
             android:layout_marginHorizontal="20dp"
             android:layout_weight="1"
             android:background="@drawable/main_menu_background"

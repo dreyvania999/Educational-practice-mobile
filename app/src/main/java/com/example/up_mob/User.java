@@ -1,27 +1,34 @@
 package com.example.up_mob;
 
-import java.io.Serializable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.util.Log;
 
-public class User implements Serializable {
-    private int id;
+import java.io.InputStream;
+
+public class User {
+    private String id;
     private String email;
     private String nickName;
-    private String avatar;
+    private Bitmap avatarBitmap;
     private String token;
+    private String avatar;
     private String password;
 
-    User(int id, String email, String nickName, String avatar, String token) {
+    User(String id, String email, String nickName, String avatar, String token) {
         this.id = id;
         this.email = email;
         this.nickName = nickName;
-        this.avatar = avatar;
+        new DownloadImageTask()
+                .execute(avatar);
         this.token = token;
     }
 
-    User(String email, String Password) {
-
+    User(String email, String password) {
         this.email = email;
-        this.password = Password;
+        this.password = password;
+
     }
 
     public String getToken() {
@@ -32,12 +39,15 @@ public class User implements Serializable {
         this.token = token;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public Bitmap getAvatarBitmap() {
+        new DownloadImageTask()
+                .execute(avatar);
+        return avatarBitmap;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setAvatarBitmap(String avatarPath) {
+        new DownloadImageTask()
+                .execute(avatar);
     }
 
     public String getNickName() {
@@ -56,11 +66,33 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Ошибка передачи изображения", e.getMessage());
+                e.printStackTrace();
+            }
+            avatarBitmap = mIcon11;
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            avatarBitmap = result;
+        }
     }
 }

@@ -7,8 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -40,11 +47,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSignIn:
-                if (PassAndEmail())
+                if (PassAndEmail()) {
+                    postData();
 
-                    break;
+                }
+                break;
             case R.id.btnProfile:
-                MainActivity.CurrentUser = new User(1, "Вку", "ирил", "http://mskko2021.mad.hakta.pro//uploads//files//quote_2.png", "123");
+                MainActivity.CurrentUser = new User("1", "Вку", "ирил", "http://mskko2021.mad.hakta.pro//uploads//files//quote_2.png", "123");
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
             case R.id.reg:
@@ -54,27 +63,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-
-
-   /* private void postData( ) {
+    private void postData() {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://mskko2021.mad.hakta.pro/api")
+                .baseUrl("http://mskko2021.mad.hakta.pro/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
-        User mask = new User( );
+        SendUser mask = new SendUser(Email.getText().toString(), Password.getText().toString());
 
         retrofit2.Call<User> call = retrofitAPI.createPost(mask);
 
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Toast.makeText(LoginActivity.this, "Паста добавлена", Toast.LENGTH_LONG).show();
-
-
+                MainActivity.CurrentUser = response.body();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
 
             @Override
@@ -82,5 +88,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(LoginActivity.this, "Ошибка: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-    }*/
+    }
 }

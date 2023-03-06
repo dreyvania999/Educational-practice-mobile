@@ -6,8 +6,8 @@ import retrofit2.http.POST;
 
 public interface RetrofitAPI {
 
-    @POST("/user")
-    Call<User> createPost(@Body User user);
+    @POST("user/login")
+    Call<User> createPost(@Body SendUser user);
 
 
 }

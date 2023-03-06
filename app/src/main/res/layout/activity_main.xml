@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/tvGreeting"
+        app:layout_constraintBottom_toTopOf="@id/AvatarName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,29 +31,30 @@
             android:layout_height="80dp"
             app:srcCompat="@drawable/logo" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/avatar"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:layout_weight="1"
+            app:shapeAppearanceOverlay="@style/circleImageView"
             app:srcCompat="@drawable/avatar" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvGreeting"
+        android:id="@+id/AvatarName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/mainMenuGreeting"
         android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/tvQuestion"
+        app:layout_constraintBottom_toTopOf="@id/NikName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llUp" />
 
     <TextView
-        android:id="@+id/tvQuestion"
+        android:id="@+id/NikName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/mainMenuQuestion"
@@ -62,7 +63,7 @@
         app:layout_constraintBottom_toTopOf="@id/FillingView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvGreeting" />
+        app:layout_constraintTop_toBottomOf="@id/AvatarName" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/FillingView"
@@ -72,7 +73,7 @@
         android:layout_marginBottom="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
+        app:layout_constraintTop_toBottomOf="@+id/NikName" />
 
     <ListView
         android:id="@+id/ListQuestion"
