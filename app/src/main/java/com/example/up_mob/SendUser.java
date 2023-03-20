@@ -7,7 +7,6 @@ public class SendUser {
     public SendUser(String email, String password) {
         this.email = email;
         this.password = password;
-
     }
 
     public String getEmail() {

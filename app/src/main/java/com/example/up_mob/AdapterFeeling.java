@@ -42,7 +42,7 @@ public class AdapterFeeling extends RecyclerView.Adapter<AdapterFeeling.ViewHold
         if (modal.getImage().equals("null")) {
             holder.image.setImageResource(R.drawable.absence);
         } else {
-            new DownloadImageTask(holder.image)
+            new DownloadImageTask((ImageView) holder.image)
                     .execute(modal.getImage());
         }
     }
@@ -66,7 +66,7 @@ public class AdapterFeeling extends RecyclerView.Adapter<AdapterFeeling.ViewHold
                 InputStream in = new java.net.URL(urldisplay).openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
-                Log.e("Error", e.getMessage());
+                Log.e("Произошла непредвиденная ошибка", e.getMessage());
                 e.printStackTrace();
             }
             return mIcon11;
@@ -79,8 +79,8 @@ public class AdapterFeeling extends RecyclerView.Adapter<AdapterFeeling.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView title;
-        private final ImageView image;
+        private final TextView title; // Название ощущения
+        private final ImageView image; // Картинка ощущения
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

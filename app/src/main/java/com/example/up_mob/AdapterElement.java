@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 
 public class AdapterElement extends BaseAdapter {
@@ -43,11 +42,11 @@ public class AdapterElement extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View v = View.inflate(mContext, R.layout.list_element, null);
+        View v = View.inflate(mContext, R.layout.item_element, null);
 
-        TextView title = v.findViewById(R.id.Title);
-        ImageView Image = v.findViewById(R.id.Images);
-        TextView description = v.findViewById(R.id.description);
+        TextView title = v.findViewById(R.id.textTitle);
+        ImageView Image = v.findViewById(R.id.image);
+        TextView description = v.findViewById(R.id.textDescription);
 
         MaskElement maskQuote = maskList.get(position);
         title.setText(maskQuote.getTitle());
@@ -55,7 +54,7 @@ public class AdapterElement extends BaseAdapter {
         if (maskQuote.getImage().equals("null")) {
             Image.setImageResource(R.drawable.absence);
         } else {
-            new DownloadImageTask(Image)
+            new DownloadImageTask((ImageView) Image)
                     .execute(maskQuote.getImage());
         }
 
@@ -63,7 +62,7 @@ public class AdapterElement extends BaseAdapter {
         return v;
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    public static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
         public DownloadImageTask(ImageView bmImage) {
@@ -74,10 +73,10 @@ public class AdapterElement extends BaseAdapter {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
             try {
-                InputStream in = new URL(urldisplay).openStream();
+                InputStream in = new java.net.URL(urldisplay).openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
-                Log.e("Error", e.getMessage());
+                Log.e("Произошла непредвиденная ошибка", e.getMessage());
                 e.printStackTrace();
             }
             return mIcon11;

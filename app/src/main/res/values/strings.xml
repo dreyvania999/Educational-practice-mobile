@@ -19,4 +19,8 @@
     <string name="header">Заголовок блока</string>
     <string name="text">Кратенькое описание\nблока с двумя строчками</string>
     <string name="more">подробнее</string>
+    <string name="passHint">Пароль</string>
+    <string name="registerL">Register</string>
+    <string name="prof">Профиль</string>
+    <string name="headerBlock">Заголовок блока</string>
 </resources>

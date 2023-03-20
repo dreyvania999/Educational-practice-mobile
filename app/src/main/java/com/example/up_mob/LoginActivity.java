@@ -1,15 +1,17 @@
 package com.example.up_mob;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,75 +19,87 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity {
 
-    EditText Email, Password;
+    EditText etEmail, etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        etEmail = findViewById(R.id.EditEmail);
+        etPassword = findViewById(R.id.Password);
 
-        Password = findViewById(R.id.pass);
-        Email = findViewById(R.id.email);
-
-        TextView tv = findViewById(R.id.reg);
-        tv.setOnClickListener(this);
-
-        Button btnSignIn = findViewById(R.id.btnSignIn);
-        btnSignIn.setOnClickListener(this);
-
-        Button btnProfile = findViewById(R.id.btnProfile);
-        btnProfile.setOnClickListener(this);
-    }
-
-    public boolean PassAndEmail() {
-        return !TextUtils.isEmpty(Email.getText()) && !TextUtils.isEmpty(Password.getText()) && android.util.Patterns.EMAIL_ADDRESS.matcher(Email.getText()).matches();
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btnSignIn:
-                if (PassAndEmail()) {
-                    postData();
-
-                }
-                break;
-            case R.id.btnProfile:
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                break;
-            case R.id.reg:
-                startActivity(new Intent(LoginActivity.this, RegActivity.class));
-                break;
+        SharedPreferences prefs = this.getSharedPreferences(
+                "Date", Context.MODE_PRIVATE); // Получение данных о пользователе
+        if (prefs != null) {
+            etEmail.setText(prefs.getString("Email", ""));
+            etPassword.requestFocus();
         }
     }
 
+    public void goMain(View v) {
+        if (etEmail.getText().toString().equals("") || etPassword.getText().toString().equals("")) // Проверка заполненности полей
+        {
+            Toast.makeText(LoginActivity.this, "Все поля должны быть заполнены!", Toast.LENGTH_SHORT).show();
+        } else {
+            Pattern p = Pattern.compile("@", Pattern.CASE_INSENSITIVE);
+            Matcher m = p.matcher(etEmail.getText().toString());
+            boolean b = m.find();
+            if (b) {
+                callLogin();
+            } else {
+                Toast.makeText(LoginActivity.this, "Поле для Email обязательно должно содержать символ '@'", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
-    private void postData() {
-
+    private void callLogin()
+    {
+        String email = String.valueOf(etEmail.getText());
+        String password = String.valueOf(etPassword.getText());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://mskko2021.mad.hakta.pro/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
-        SendUser mask = new SendUser(Email.getText().toString(), Password.getText().toString());
-
-        retrofit2.Call<User> call = retrofitAPI.createPost(mask);
-
+        SendUser sendUser = new SendUser(email, password);
+        Call<User> call = retrofitAPI.createUser(sendUser);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                MainActivity.CurrentUser = response.body();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                if (!response.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Пользователь с такой почтой и паролем не найден", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (response.body() != null) {
+                    if (response.body().getToken() != null) {
+                        SharedPreferences prefs = getSharedPreferences( // Сохранение данных
+                                "Date", Context.MODE_PRIVATE);
+                        prefs.edit().putString("Email", "" + email).apply();
+                        prefs.edit().putString("Avatar", "" + response.body().getAvatar()).apply();
+                        prefs.edit().putString("NickName", "" + response.body().getNickName()).apply();
+
+                        Onboarding.avatar = response.body().getAvatar();
+                        Onboarding.nickName = response.body().getNickName();
+
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Bundle b = new Bundle();
+                        intent.putExtras(b);
+                        startActivity(intent);
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Ошибка: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "При авторизации возникла ошибка: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void goRegister(View v) {
+        startActivity(new Intent(this, RegisterActivity.class));
     }
 }
