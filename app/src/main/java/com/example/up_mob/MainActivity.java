@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private final List<MaskElement> listQuote = new ArrayList<>();
     private final List<MaskFeeling> listFeeling = new ArrayList<>();
     ImageView imageProfile;
-    TextView textHello;
+    TextView textGreeting;
     private AdapterElement pAdapter;
     private AdapterFeeling dataRVAdapter;
 
@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Заполнение списков
 
         ListView lvQuotes = findViewById(R.id.lvQuotes);
         pAdapter = new AdapterElement(MainActivity.this, listQuote);
@@ -53,25 +55,17 @@ public class MainActivity extends AppCompatActivity {
         rvFeeling.setAdapter(dataRVAdapter);
         new GetFeeling().execute();
 
+        //Заполнение входной информации для пользователя
+
         imageProfile = findViewById(R.id.ivProfile);
         new AdapterElement.DownloadImageTask((ImageView) imageProfile)
-                .execute(Onboarding.avatar); // Заполнение фото пользователя
+                .execute(Including.avatar);
 
-        textHello = findViewById(R.id.hello);
-        textHello.setText(textHello.getText().toString() + Onboarding.nickName + "!"); // Заполнение имени пользователя
+        textGreeting = findViewById(R.id.Greeting);
+        textGreeting.setText(textGreeting.getText().toString() + Including.nickName + "!");
     }
 
-    public void goMenu(View view) {
-        startActivity(new Intent(this, MenuActivity.class));
-    }
 
-    public void goProfile(View view) {
-        startActivity(new Intent(this, ProfileActivity.class));
-    }
-
-    public void goListen(View view) {
-        startActivity(new Intent(this, ListenActivity.class));
-    }
 
     private class GetQuotes extends AsyncTask<Void, Void, String> { // Вывод списка цитат
 
@@ -121,7 +115,17 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    public void goMenu(View view) {
+        startActivity(new Intent(this, MenuActivity.class));
+    }
 
+    public void goProfile(View view) {
+        startActivity(new Intent(this, ProfileActivity.class));
+    }
+
+    public void goListen(View view) {
+        startActivity(new Intent(this, ListenActivity.class));
+    }
     private class GetFeeling extends AsyncTask<Void, Void, String> { // Вывод списка ощущений
 
         @Override

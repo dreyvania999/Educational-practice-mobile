@@ -85,11 +85,11 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         textName = findViewById(R.id.textNameProfile);
-        textName.setText(Onboarding.nickName);
+        textName.setText(Including.nickName);
 
         image = findViewById(R.id.avatar);
         new AdapterElement.DownloadImageTask((ImageView) image)
-                .execute(Onboarding.avatar);
+                .execute(Including.avatar);
 
         GridView gvImage = findViewById(R.id.lvImageProfile);
         pAdapter = new AdapterImageFProfile(ProfileActivity.this, list);

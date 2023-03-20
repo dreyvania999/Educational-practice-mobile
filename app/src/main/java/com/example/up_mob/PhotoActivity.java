@@ -14,8 +14,8 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 public class PhotoActivity extends AppCompatActivity {
 
-    SubsamplingScaleImageView imageView; // Изображение
-    View view; // Элемент, который группирует все
+    SubsamplingScaleImageView imageView;
+    View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class PhotoActivity extends AppCompatActivity {
             imageView.setImage(ImageSource.bitmap(myBitmap));
         }
 
-        imageView.setOnTouchListener(new OnSwipeTouchListener(PhotoActivity.this) { // Добавляем обработку смахивания
+        imageView.setOnTouchListener(new OnSwipeTouchListener(PhotoActivity.this) {
             public void onSwipeRight() {
                 ProfileActivity.maskImageFProfile = null;
                 startActivity(new Intent(PhotoActivity.this, ProfileActivity.class));
@@ -48,7 +48,7 @@ public class PhotoActivity extends AppCompatActivity {
         });
 
         view = findViewById(R.id.view);
-        view.setOnTouchListener(new OnSwipeTouchListener(PhotoActivity.this) { // Добавляем обработку смахивания
+        view.setOnTouchListener(new OnSwipeTouchListener(PhotoActivity.this) {
             public void onSwipeRight() {
                 ProfileActivity.maskImageFProfile = null;
                 startActivity(new Intent(PhotoActivity.this, ProfileActivity.class));

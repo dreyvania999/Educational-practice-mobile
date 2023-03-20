@@ -8,10 +8,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Onboarding extends AppCompatActivity {
+public class Including extends AppCompatActivity {
 
-    public static String avatar; // Фотография пользователя, который уже вошёл в систему
-    public static String nickName; // Имя пользователя, который уже вошёл в систему
+    public static String avatar;
+    public static String nickName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +19,9 @@ public class Onboarding extends AppCompatActivity {
         setContentView(R.layout.activity_onboarding);
 
         SharedPreferences prefs = this.getSharedPreferences(
-                "Date", Context.MODE_PRIVATE); // Получение данных о пользователе
+                "Date", Context.MODE_PRIVATE);
         if (prefs != null) {
-            if (!prefs.getString("NickName", "").equals("")) // Если пользователь уже входил, то получаем данные и пропускаем авторизацию
+            if (!prefs.getString("NickName", "").equals(""))
             {
                 avatar = prefs.getString("Avatar", "");
                 nickName = prefs.getString("NickName", "");

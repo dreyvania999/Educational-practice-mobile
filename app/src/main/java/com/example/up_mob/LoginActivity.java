@@ -81,8 +81,8 @@ public class LoginActivity extends AppCompatActivity {
                         prefs.edit().putString("Avatar", "" + response.body().getAvatar()).apply();
                         prefs.edit().putString("NickName", "" + response.body().getNickName()).apply();
 
-                        Onboarding.avatar = response.body().getAvatar();
-                        Onboarding.nickName = response.body().getNickName();
+                        Including.avatar = response.body().getAvatar();
+                        Including.nickName = response.body().getNickName();
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         Bundle b = new Bundle();

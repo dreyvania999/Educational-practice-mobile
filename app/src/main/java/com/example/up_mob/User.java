@@ -25,21 +25,13 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getNickName() {
         return nickName;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
+
 
     public String getAvatar() {
         return avatar;
@@ -50,7 +42,5 @@ public class User implements Serializable {
         return token;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+
 }

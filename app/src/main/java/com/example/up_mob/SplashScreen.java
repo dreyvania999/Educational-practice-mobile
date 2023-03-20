@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreen.this, Onboarding.class));
+                startActivity(new Intent(SplashScreen.this, Including.class));
             }
         }, SPLASH_DISPLAY_LENGTH);
     }
