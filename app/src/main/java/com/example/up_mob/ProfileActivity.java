@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        File dir = new File(getApplicationInfo().dataDir + "/MyFiles/");
+                        File dir = new File(getApplicationInfo().dataDir + "/FilesPhotos/");
                         dir.mkdirs();
                         File file = new File(dir, System.currentTimeMillis() + ".jpg");
                         try {
@@ -113,11 +113,11 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void GetImageProfile()
     {
-        File dir = new File(getApplicationInfo().dataDir + "/MyFiles/");
+        File dir = new File(getApplicationInfo().dataDir + "/FilesPhotos/");
         dir.mkdirs();
         list.clear();
         pAdapter.notifyDataSetInvalidated();
-        String path = getApplicationInfo().dataDir + "/MyFiles";
+        String path = getApplicationInfo().dataDir + "/FilesPhotos";
         File directory = new File(path);
         File[] files = directory.listFiles();
         int j = 0;
