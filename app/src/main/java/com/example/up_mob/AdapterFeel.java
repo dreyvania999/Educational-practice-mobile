@@ -18,12 +18,12 @@ import java.io.InputStream;
 import java.util.List;
 
 
-public class AdapterFeeling extends RecyclerView.Adapter<AdapterFeeling.ViewHolder> {
+public class AdapterFeel extends RecyclerView.Adapter<AdapterFeel.ViewHolder> {
 
-    private final List<MaskFeeling> dataModalArrayList;
+    private final List<MaskFeel> dataModalArrayList;
     private final Context context;
 
-    public AdapterFeeling(List<MaskFeeling> dataModalArrayList, Context context) {
+    public AdapterFeel(List<MaskFeel> dataModalArrayList, Context context) {
         this.dataModalArrayList = dataModalArrayList;
         this.context = context;
     }
@@ -36,7 +36,7 @@ public class AdapterFeeling extends RecyclerView.Adapter<AdapterFeeling.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final MaskFeeling modal = dataModalArrayList.get(position);
+        final MaskFeel modal = dataModalArrayList.get(position);
         holder.title.setText(modal.getTitle());
 
         if (modal.getImage().equals("null")) {
@@ -79,13 +79,13 @@ public class AdapterFeeling extends RecyclerView.Adapter<AdapterFeeling.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView title; // Название ощущения
-        private final ImageView image; // Картинка ощущения
+        private final TextView title;
+        private final ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
-            image = itemView.findViewById(R.id.imageFeeling);
+            image = itemView.findViewById(R.id.imageFeel);
         }
     }
 }

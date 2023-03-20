@@ -1,13 +1,13 @@
 package com.example.up_mob;
 
-public class MaskFeeling {
+public class MaskFeel {
 
     private int id;
     private String title;
     private String image;
     private int position;
 
-    public MaskFeeling(int id, String title, String image, int position) {
+    public MaskFeel(int id, String title, String image, int position) {
         this.id = id;
         this.title = title;
         this.position = position;
