@@ -28,12 +28,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final List<MaskElement> listQvest = new ArrayList<>();
-    private final List<MaskFeel> listFeel = new ArrayList<>();
+    private final List<MaskElement> listQuote = new ArrayList<>();
+    private final List<MaskFeeling> listFeeling = new ArrayList<>();
     ImageView imageProfile;
     TextView textGreeting;
     private AdapterElement pAdapter;
-    private AdapterFeel dataRVAdapter;
+    private AdapterFeeling dataRVAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +42,18 @@ public class MainActivity extends AppCompatActivity {
 
         // Заполнение списков
 
-        ListView lvQvests = findViewById(R.id.lvQvests);
-        pAdapter = new AdapterElement(MainActivity.this, listQvest);
-        lvQvests.setAdapter(pAdapter);
-        new GetQvests().execute();
+        ListView lvQuotes = findViewById(R.id.lvQuotes);
+        pAdapter = new AdapterElement(MainActivity.this, listQuote);
+        lvQuotes.setAdapter(pAdapter);
+        new GetQuotes().execute();
 
-        RecyclerView rvFeel = findViewById(R.id.recyclerView);
-        rvFeel.setHasFixedSize(true);
-        rvFeel.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        RecyclerView rvFeeling = findViewById(R.id.recyclerView);
+        rvFeeling.setHasFixedSize(true);
+        rvFeeling.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        dataRVAdapter = new AdapterFeel(listFeel, MainActivity.this);
-        rvFeel.setAdapter(dataRVAdapter);
-        new GetFeel().execute();
+        dataRVAdapter = new AdapterFeeling(listFeeling, MainActivity.this);
+        rvFeeling.setAdapter(dataRVAdapter);
+        new GetFeeling().execute();
 
         //Заполнение входной информации для пользователя
 
@@ -67,12 +67,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private class GetQvests extends AsyncTask<Void, Void, String> { // Вывод списка цитат
+    private class GetQuotes extends AsyncTask<Void, Void, String> { // Вывод списка цитат
 
         @Override
         protected String doInBackground(Void... voids) {
             try {
-                URL url = new URL("http://mskko2021.mad.hakta.pro/api/Qvests");
+                URL url = new URL("http://mskko2021.mad.hakta.pro/api/quotes");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             try {
-                listQvest.clear();
+                listQuote.clear();
                 pAdapter.notifyDataSetInvalidated();
 
                 JSONObject object = new JSONObject(s);
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                             productJson.getString("image"),
                             productJson.getString("description")
                     );
-                    listQvest.add(tempProduct);
+                    listQuote.add(tempProduct);
                     pAdapter.notifyDataSetInvalidated();
                 }
 
@@ -126,12 +126,12 @@ public class MainActivity extends AppCompatActivity {
     public void goListen(View view) {
         startActivity(new Intent(this, ListenActivity.class));
     }
-    private class GetFeel extends AsyncTask<Void, Void, String> { // Вывод списка ощущений
+    private class GetFeeling extends AsyncTask<Void, Void, String> { // Вывод списка ощущений
 
         @Override
         protected String doInBackground(Void... voids) {
             try {
-                URL url = new URL("http://mskko2021.mad.hakta.pro/api/Feels");
+                URL url = new URL("http://mskko2021.mad.hakta.pro/api/feelings");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             try {
-                listFeel.clear();
+                listFeeling.clear();
                 dataRVAdapter.notifyDataSetChanged();
 
                 JSONObject object = new JSONObject(s);
@@ -160,16 +160,16 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < tempArray.length(); i++) {
                     JSONObject productJson = tempArray.getJSONObject(i);
-                    MaskFeel tempProduct = new MaskFeel(
+                    MaskFeeling tempProduct = new MaskFeeling(
                             productJson.getInt("id"),
                             productJson.getString("title"),
                             productJson.getString("image"),
                             productJson.getInt("position")
                     );
-                    listFeel.add(tempProduct);
+                    listFeeling.add(tempProduct);
                     dataRVAdapter.notifyDataSetChanged();
                 }
-                listFeel.sort(Comparator.comparing(MaskFeel::getPosition));
+                listFeeling.sort(Comparator.comparing(MaskFeeling::getPosition));
                 dataRVAdapter.notifyDataSetChanged();
             } catch (Exception exception) {
                 Toast.makeText(MainActivity.this, "При выводе данных возникла ошибка", Toast.LENGTH_SHORT).show();

@@ -48,17 +48,17 @@ public class AdapterElement extends BaseAdapter {
         ImageView Image = v.findViewById(R.id.image);
         TextView description = v.findViewById(R.id.textDescription);
 
-        MaskElement maskQvest = maskList.get(position);
-        title.setText(maskQvest.getTitle());
+        MaskElement maskQuote = maskList.get(position);
+        title.setText(maskQuote.getTitle());
 
-        if (maskQvest.getImage().equals("null")) {
+        if (maskQuote.getImage().equals("null")) {
             Image.setImageResource(R.drawable.absence);
         } else {
             new DownloadImageTask((ImageView) Image)
-                    .execute(maskQvest.getImage());
+                    .execute(maskQuote.getImage());
         }
 
-        description.setText(maskQvest.getDescription());
+        description.setText(maskQuote.getDescription());
         return v;
     }
 
