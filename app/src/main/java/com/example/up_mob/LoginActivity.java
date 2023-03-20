@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
-        User sendUser = new User(email, password);
+        SendUser sendUser = new SendUser(email, password);
         Call<User> call = retrofitAPI.createUser(sendUser);
         call.enqueue(new Callback<User>() {
             @Override

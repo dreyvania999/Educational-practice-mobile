@@ -36,7 +36,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@drawable/alegreya_sans_regular"
+            android:fontFamily="@font/alegreya_sans_regular"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="10dp"

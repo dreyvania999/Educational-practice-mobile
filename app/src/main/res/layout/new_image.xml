@@ -16,7 +16,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@drawable/button_style"
-            android:fontFamily="@drawable/alegreya_sans_medium"
+            android:fontFamily="@font/alegreya_sans_medium"
             android:gravity="center"
             android:text="+"
             android:textColor="@color/white"
