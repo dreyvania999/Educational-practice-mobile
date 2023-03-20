@@ -8,6 +8,7 @@ public class User implements Serializable {
     private String nickName;
     private String avatar;
     private String token;
+    private String password;
 
     public User(String id, String email, String nickName, String avatar, String token) {
         this.id = id;
@@ -16,7 +17,10 @@ public class User implements Serializable {
         this.avatar = avatar;
         this.token = token;
     }
-
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
     public String getId() {
         return id;
     }
