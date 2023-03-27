@@ -26,6 +26,15 @@ E-mail: junior@wsr.ru
 
 <img src="https://sun9-25.userapi.com/impg/WoLwCyFC90dJaytoXg8WcHAaNgzJIAXZQXRNHA/iQucWJb1vzc.jpg?size=1039x2160&quality=95&sign=b8c8a073834da02d8467634465d8458b&type=album" width="200" height="450">
 
-## Авторы
+## Контактная ниформация
 
-Студент ГБПОУ "Нижегородский Губернский Колледж" группы 41П Дрей Иван
+Больше проектов [здесь](https://github.com/dreyvania999)
+
+<div id="socials" align="center">
+	<a href="https://vk.com/id500044052">
+		<img src="https://img.shields.io/badge/VK-blue?style=for-the-badge&logo=VK&logoColor=white" alt="VK"/>
+	</a>
+	<a href="https://t.me/Iadrag">
+		<img src="https://img.shields.io/badge/Telegram-blue?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"/>
+	</a>
+</div>
