@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UP_Mob</string>
+    <string name="app_name">Educational-practice-mobile</string>
     <string name="greeting">ПРИВЕТ</string>
     <string name="instruction">Наслаждайся отборочными,\nбудь внимателен.\nДелай хорошо.</string>
     <string name="question">Ещё нет аккаунта?</string>
